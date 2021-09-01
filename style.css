@@ -1,0 +1,88 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+h1 {
+    font-family: "Pacifico";
+    margin: 5px 0;
+}
+.radios {
+    display: inline-block;
+}
+.choice {
+    display: inline-block;
+}
+fieldset {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.button{
+    background-color: #fecb56;
+    border: none;
+    border-radius: 5px;
+    padding: 4px 8px;
+    margin-left: 20px;
+}
+#game{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    background-color: #eee;
+    border-radius: 10px;
+    box-shadow: 3px 3px 10px #bbb;
+}
+.card {
+    background-image: url("images/background.jpg");
+    background-size: 80%;
+    background-position:center;
+    background-repeat: no-repeat;
+    margin: 3px;
+}
+.halfOpenedCard {
+    animation: rotate90 .8s;
+    transform: rotateY(90deg);
+}
+.fullOpenedCard {
+    animation: rotateAnother90 .8s;
+    transform: rotateY(90deg);
+}
+
+@keyframes rotate90 {
+    100%{
+        transform: rotateY(-90deg);
+    }
+}
+@keyframes rotateAnother90{
+    100%{
+        transform:rotateY(-90deg);
+    }
+}
+
+@keyframes close {
+    100%{
+        transform: rotateY(180deg);
+    }
+}
+
+@keyframes fadeOut {
+    0%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+    }
+}

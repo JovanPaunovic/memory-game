@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Pacifico">
+    <title>Memory Game</title>
+</head>
+
+<body>
+    <h1>Memory Game</h1>
+    <fieldset>
+        <legend>Settings</legend>
+        <div class="radios">
+            <div class="choice">
+                <input type="radio" name="radios" id="firstRadio" value="12" ratio="3">
+                <label for="firstRadio">3 x 4</label>
+            </div>
+            <div class="choice">
+                <input type="radio" name="radios" id="secondRadio" value="16" ratio="4">
+                <label for="secondRadio">4 x 4</label>
+            </div>
+            <div class="choice">
+                <input type="radio" name="radios" id="thirdRadio" value="20" ratio="4">
+                <label for="thirdRadio">4 x 5</label>
+            </div>
+            <div class="choice">
+                <input type="radio" name="radios" id="fourthRadio" value="30" ratio="5">
+                <label for="fourthRadio">5 x 6</label>
+            </div>
+            <!--
+            <button onclick="open90()">first click</button>
+            <button onclick="openAnother90()">second click</button>
+            <button>close</button>
+            -->
+        </div>
+
+
+        <button id="newGame" class="button">New Game</button>
+    </fieldset>
+
+    <div id="game">
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
