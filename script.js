@@ -3,6 +3,7 @@ const game = document.querySelector("#game");
 const NUMBER_OF_IMAGES = 30;
 
 let pictures = [];
+let timer;
 let selectedValue = 0, ratio = 0, clickedCards = [], openedCards = [];
 let alreadyOpened1 = false, alreadyOpened2 = false;
 
@@ -14,6 +15,7 @@ document.querySelector("#newGame").addEventListener("click", () => {
             break;
         }
     }
+    clearTimeout(timer);
     resetVariables();
     generateCards();
     chooseRandomPictures();
@@ -78,7 +80,7 @@ function revealCard(br) {
         alreadyOpened2 = true;
 
         if (game.children[clickedCards[0]].style.backgroundImage !== game.children[clickedCards[1]].style.backgroundImage) {
-            setTimeout(() => {
+            timer=setTimeout(() => {
                 for (let i of clickedCards) {
                     game.children[i].style.backgroundImage = `url(images/background.jpg)`;
                 }
