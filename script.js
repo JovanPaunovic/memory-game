@@ -1,6 +1,7 @@
 const radioButtons = document.querySelectorAll("input[type='radio']");
 const game = document.querySelector("#game");
 const NUMBER_OF_IMAGES = 30;
+const win=document.createElement("h1");
 
 let pictures = [];
 let timer;
@@ -24,11 +25,12 @@ document.querySelector("#newGame").addEventListener("click", () => {
 function resetVariables() {
     clearTimeout(timer);
     clearTimeout(delay);
-    canOpenNext=true;
+    canOpenNext = true;
     clickedCards = [];
     openedCards = [];
     alreadyOpened1 = false;
     alreadyOpened2 = false;
+    document.querySelector("#winnerHolder").innerHTML="";
 }
 
 function generateCards() {
@@ -103,9 +105,9 @@ function revealCard(br) {
                 }
                 clickedCards.length = 0;
             }, 4000);
-            canOpenNext=false;
-            delay=setTimeout(() => {
-                canOpenNext=true;
+            canOpenNext = false;
+            delay = setTimeout(() => {
+                canOpenNext = true;
             }, 800);
         }
         else {
@@ -116,20 +118,33 @@ function revealCard(br) {
             /*game.children[clickedCards[0]].style.opacity="0.5";
             game.children[clickedCards[1]].style.opacity="0.5";*/
             clickedCards.length = 0;
-            canOpenNext=true;
+            canOpenNext = true;
         }
 
         alreadyOpened1 = false;
         alreadyOpened2 = false;
 
+        if (openedCards.length >= Number(selectedValue)) {
+            winGame(`Congrats, you matched all the images!`);
+            return;
+        }
     }
+}
+
+function winGame(text) {
+    win.innerText=text;
+    win.classList.add("winner");
+    for (let child of game.children) {
+        child.style.opacity=1;
+        child.style.animation="fadeIn 1s ease-in-out";
+    }
+    document.querySelector("#winnerHolder").append(win);
 }
 
 function fadeOut(card) {
     card.style.animation = "fadeOut 1s ease-in-out";
     card.style.opacity = 0;
 }
-//*dodati kraj igre
 //*casual i competitive mod
 //*dodati animacije za okretanje
 

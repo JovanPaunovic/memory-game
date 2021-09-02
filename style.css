@@ -4,7 +4,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     min-height: 100vh;
 }
@@ -36,7 +36,7 @@ fieldset {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    margin: auto;
+    margin: 10px auto;
     justify-content: center;
     align-items: center;
     width: 100%;
@@ -44,6 +44,10 @@ fieldset {
     background-color: #eee;
     border-radius: 10px;
     box-shadow: 3px 3px 10px #bbb;
+}
+#winnerHolder {
+    width: 100%;
+    max-width: 500px;
 }
 .card {
     background-image: url("images/background.png");
@@ -59,6 +63,15 @@ fieldset {
 .fullOpenedCard {
     animation: rotateAnother90 .8s;
     transform: rotateY(90deg);
+}
+.winner{
+    color: #333;
+    background-image: radial-gradient(#eee, #fecb56);
+    padding: 0 10px;
+    border-radius: 10px;
+    text-align: center;
+    border: 2px solid #333;
+    animation: fadeIn 2s ease-in-out;
 }
 
 @keyframes rotate90 {
@@ -84,5 +97,14 @@ fieldset {
     }
     100%{
         opacity: 0;
+    }
+}
+
+@keyframes fadeIn {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
     }
 }
