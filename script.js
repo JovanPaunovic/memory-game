@@ -68,9 +68,20 @@ function chooseRandomPictures() {
 function revealCard(br) {
     if (clickedCards.includes(br) || openedCards.includes(br))
         return;
+
     clickedCards.push(br);
-    if (clickedCards.length > 2)
-        return
+
+    if (clickedCards.length > 2){
+        game.children[clickedCards[0]].style.backgroundImage="url(images/background.png)";
+        game.children[clickedCards[1]].style.backgroundImage="url(images/background.png)";
+        alreadyOpened1=false;
+        alreadyOpened2=false;
+        clickedCards.shift();
+        clickedCards.shift();
+        clearTimeout(timer);
+    }
+
+
     if (!alreadyOpened1) {
         game.children[br].style.backgroundImage = `url(${pictures[br]})`;
         alreadyOpened1 = true;
@@ -82,10 +93,10 @@ function revealCard(br) {
         if (game.children[clickedCards[0]].style.backgroundImage !== game.children[clickedCards[1]].style.backgroundImage) {
             timer=setTimeout(() => {
                 for (let i of clickedCards) {
-                    game.children[i].style.backgroundImage = `url(images/background.jpg)`;
+                    game.children[i].style.backgroundImage = `url(images/background.png)`;
                 }
                 clickedCards.length = 0;
-            }, 2000);
+            }, 4000);
         }
         else {
             openedCards.push(clickedCards[0]);
@@ -109,7 +120,6 @@ function fadeOut(card){
 }
 //*dodati kraj igre
 //*casual i competitive mod
-//*povezane slike da se izblede
 
 /*
 function open90(){

@@ -40,17 +40,17 @@ fieldset {
     justify-content: center;
     align-items: center;
     width: 100%;
-    max-width: 400px;
+    max-width: 500px;
     background-color: #eee;
     border-radius: 10px;
     box-shadow: 3px 3px 10px #bbb;
 }
 .card {
-    background-image: url("images/background.jpg");
+    background-image: url("images/background.png");
     background-size: 80%;
     background-position:center;
     background-repeat: no-repeat;
-    margin: 3px;
+    margin: 1px;
 }
 .halfOpenedCard {
     animation: rotate90 .8s;
