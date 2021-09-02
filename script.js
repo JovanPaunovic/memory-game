@@ -1,13 +1,14 @@
 const radioButtons = document.querySelectorAll("input[type='radio']");
+const cbxCompetitive=document.querySelector("input[type='checkbox']");
 const game = document.querySelector("#game");
 const NUMBER_OF_IMAGES = 30;
 const win=document.createElement("h1");
 
 let pictures = [];
-let timer;
-let delay;
+let timer, tempTimer, delay, clock;
+let time=0.00;
 let selectedValue = 0, ratio = 0, clickedCards = [], openedCards = [];
-let alreadyOpened1 = false, alreadyOpened2 = false, canOpenNext = true;
+let alreadyOpened1 = false, alreadyOpened2 = false, canOpenNext = true, isCompetitive=false;
 
 document.querySelector("#newGame").addEventListener("click", () => {
     for (let rb of radioButtons) {
@@ -18,13 +19,38 @@ document.querySelector("#newGame").addEventListener("click", () => {
         }
     }
     resetVariables();
-    generateCards();
-    chooseRandomPictures();
+    
+    if(cbxCompetitive.checked) {
+        let seconds=3;
+        isCompetitive=true;
+        printText(`Your game will start in ${seconds} seconds. You will have ${selectedValue*3} seconds to solve this!`);
+        tempTimer=setInterval(() => {
+            seconds--;
+            if(seconds<1){
+                clearTimeout(tempTimer);
+                document.querySelector("#winnerHolder").innerHTML="";
+                generateCards();
+                chooseRandomPictures();
+                startTimer();
+            }
+            else
+                win.innerText=`You game will start in ${seconds} seconds. You will have ${selectedValue*3} seconds to solve this!`;
+        }, 1000);
+    }
+    else{
+        generateCards();
+        chooseRandomPictures();
+    }
+
 });
 
 function resetVariables() {
+    game.innerHTML="";
     clearTimeout(timer);
     clearTimeout(delay);
+    clearTimeout(tempTimer);
+    time=0.00;
+    isCompetitive=false;
     canOpenNext = true;
     clickedCards = [];
     openedCards = [];
@@ -125,35 +151,53 @@ function revealCard(br) {
         alreadyOpened2 = false;
 
         if (openedCards.length >= Number(selectedValue)) {
-            winGame(`Congrats, you matched all the images!`);
+            if(isCompetitive){
+                stopTimer();
+                printText(`Congrats, you matched all the images in ${time.toFixed(2)} seconds!`);
+            }
+            else
+                printText(`Congrats, you matched all the images!`);
+
+            for (let child of game.children) {
+                child.style.opacity=1;
+                child.style.animation="fadeIn 1.5s ease-in-out";
+            }
             return;
         }
     }
 }
 
-function winGame(text) {
+function printText(text) {
     win.innerText=text;
-    win.classList.add("winner");
-    for (let child of game.children) {
-        child.style.opacity=1;
-        child.style.animation="fadeIn 1s ease-in-out";
-    }
-    document.querySelector("#winnerHolder").append(win);
+    win.className="winner";
+    document.querySelector("#winnerHolder").appendChild(win);
 }
 
 function fadeOut(card) {
     card.style.animation = "fadeOut 1s ease-in-out";
     card.style.opacity = 0;
 }
-//*casual i competitive mod
-//*dodati animacije za okretanje
 
-/*
-function open90(){
-    game.firstChild.classList.add("halfOpenedCard");
+function startTimer() {
+    clock=setInterval(() => {
+        time+=0.01;
+        if(time>selectedValue*3){
+            stopTimer();
+            loseGame();
+        }
+    }, 10);
+}
+function stopTimer(){
+    clearInterval(clock);
 }
 
-function openAnother90(){
-    game.firstChild.classList.add("fullOpenedCard");
+function loseGame(){ 
+    printText("Sorry, but time is up!");
+    
+    for (let i=0;i<game.children.length;i++) {
+        openedCards.push(i);
+        game.children[i].style.backgroundImage=`url(${pictures[i]})`;
+        game.children[i].style.opacity=1;
+        game.children[i].style.animation="fadeIn 1.5s ease-in-out";
+    }
 }
-*/

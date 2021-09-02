@@ -49,6 +49,9 @@ fieldset {
     width: 100%;
     max-width: 500px;
 }
+.choice{
+    margin-left: 8px;
+}
 .card {
     background-image: url("images/background.png");
     background-size: 80%;
@@ -56,14 +59,7 @@ fieldset {
     background-repeat: no-repeat;
     margin: 1px;
 }
-.halfOpenedCard {
-    animation: rotate90 .8s;
-    transform: rotateY(90deg);
-}
-.fullOpenedCard {
-    animation: rotateAnother90 .8s;
-    transform: rotateY(90deg);
-}
+
 .winner{
     color: #333;
     background-image: radial-gradient(#eee, #fecb56);
@@ -72,23 +68,6 @@ fieldset {
     text-align: center;
     border: 2px solid #333;
     animation: fadeIn 2s ease-in-out;
-}
-
-@keyframes rotate90 {
-    100%{
-        transform: rotateY(-90deg);
-    }
-}
-@keyframes rotateAnother90{
-    100%{
-        transform:rotateY(-90deg);
-    }
-}
-
-@keyframes close {
-    100%{
-        transform: rotateY(180deg);
-    }
 }
 
 @keyframes fadeOut {
