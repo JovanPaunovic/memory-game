@@ -10,6 +10,9 @@ let time=0.00;
 let selectedValue = 0, ratio = 0, clickedCards = [], openedCards = [];
 let alreadyOpened1 = false, alreadyOpened2 = false, canOpenNext = true, isCompetitive=false;
 
+radioButtons[0].checked=true;
+
+
 document.querySelector("#newGame").addEventListener("click", () => {
     for (let rb of radioButtons) {
         if (rb.checked) {
