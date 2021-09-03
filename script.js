@@ -66,6 +66,7 @@ function generateCards() {
     game.innerHTML = "";
     for (let i = 0; i < selectedValue; i++) {
         game.innerHTML += `<div class="card" onclick="revealCard(${i})"></div>`;
+        game.lastChild.style.backgroundImage=`url(images/background.png)`;
         game.lastChild.style.width = (game.clientWidth - 25) / ratio + "px";
         game.lastChild.style.height = game.lastChild.clientWidth + "px";
     }
