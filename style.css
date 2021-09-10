@@ -25,6 +25,9 @@ fieldset {
     justify-content: center;
     align-items: center;
 }
+input[type='radio'], input[type='checkbox'] {
+    accent-color:purple;
+}
 .button{
     background-color: #fecb56;
     border: none;
